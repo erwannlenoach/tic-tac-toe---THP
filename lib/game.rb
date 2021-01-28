@@ -1,11 +1,6 @@
-require 'pry'
 class Game
 attr_accessor :players, :player_array, :game_board
 
-
-
-  #TO DO : la classe a plusieurs attr_accessor: le current_player (égal à un objet Player), le status (en cours, nul ou un objet Player s'il gagne), le Board et un array contenant les 2 joueurs.
-  
   def initialize 
 
     @players = Players.new
@@ -60,16 +55,18 @@ win_check = [
 
    win_check.each do |win_check|
       if (@game_board.board[win_check[0]] == @game_board.board[win_check[1]] && 
-        @game_board.board[win_check[1]] == @game_board.board[win_check[2]]) &&
-        @game_board.board[win_check[0]] != " "
+         @game_board.board[win_check[1]] == @game_board.board[win_check[2]]) &&
+         @game_board.board[win_check[0]] != " "
           if @game_board.board[win_check[0]] == "X"
             puts "#{@players.player1} WINS"
             @turn = 10
             @end = true
+            play_again?
           elsif @game_board.board[win_check[0]] == "O"
             puts "#{@players.player2} WINS"
             @turn = 10
             @end = true
+            play_again?
         end
       end
     end
@@ -81,5 +78,20 @@ win_check = [
       play_again?
     end
   end
-  
+
+   def play_again?
+    puts "On rejoue? (Y/N)"
+      response = ""
+      while response != "Y" || response != "N"
+        response = gets.chomp.upcase
+          if response == "Y"
+            newgame = Game.new
+            newgame.move  
+          elsif response == "N"
+          else 
+            puts "Réponds !!! (Y/N)"
+          end
+      end
+  end
+
 end 
