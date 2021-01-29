@@ -37,7 +37,7 @@ attr_accessor :players, :player_array, :game_board
         win_check
         draw_check
       else
-    puts "Choisis un nombre entre 0 et 8 dans une position libre\n"
+    puts "Choisis un nombre entre 1 et 9 dans une position libre\n"
     end
 end 
    def win_check
@@ -86,7 +86,7 @@ win_check = [
         response = gets.chomp.upcase
           if response == "Y"
             newgame = Game.new
-            newgame.move  
+            newgame.turn  
           elsif response == "N"
           else 
             puts "Réponds !!! (Y/N)"
